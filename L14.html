@@ -60,6 +60,13 @@
             font-size: 18px;
             font-weight: bold;
         }
+	
+    .correct-answer {
+        color: green;
+        font-weight: bold;
+    }
+
+
     </style>
 </head>
 <body>
@@ -129,6 +136,64 @@ int main() {
                 <label><input type="radio" name="q4" value="C"> ostream, istream, et iostream</label>
                 <label><input type="radio" name="q4" value="D"> fstream, iomanip, et ios</label>
             </div>
+		
+
+		<div class="quiz-question">
+    <p>5. Quel est l'effet du manipulateur <code>endl</code> en C++ ?</p>
+    <label><input type="radio" name="q5" value="A"> Il insère un caractère de tabulation.</label>
+    <label><input type="radio" name="q5" value="B"> Il insère un retour à la ligne et vide le tampon de sortie.</label>
+    <label><input type="radio" name="q5" value="C"> Il efface l'écran de la console.</label>
+    <label><input type="radio" name="q5" value="D"> Il change la base de numération en décimal.</label>
+</div>
+
+<div class="quiz-question">
+    <p>6. Que fait la méthode <code>getline</code> dans la classe <code>istream</code> ?</p>
+    <label><input type="radio" name="q6" value="A"> Elle lit un caractère à la fois.</label>
+    <label><input type="radio" name="q6" value="B"> Elle lit une ligne entière jusqu'à un délimiteur.</label>
+    <label><input type="radio" name="q6" value="C"> Elle lit plusieurs lignes en une seule opération.</label>
+    <label><input type="radio" name="q6" value="D"> Elle retourne une chaîne sans caractères blancs.</label>
+</div>
+
+<div class="quiz-question">
+    <p>7. Quel bit d’erreur est activé lorsqu’une opération échoue mais que le flot reste récupérable ?</p>
+    <label><input type="radio" name="q7" value="A"> eofbit</label>
+    <label><input type="radio" name="q7" value="B"> failbit</label>
+    <label><input type="radio" name="q7" value="C"> badbit</label>
+    <label><input type="radio" name="q7" value="D"> goodbit</label>
+</div>
+
+<div class="quiz-question">
+    <p>8. Comment peut-on définir un flot bidirectionnel (lecture/écriture) connecté à un fichier ?</p>
+    <label><input type="radio" name="q8" value="A"> En utilisant <code>ofstream</code> uniquement.</label>
+    <label><input type="radio" name="q8" value="B"> En utilisant <code>fstream</code> avec les modes <code>ios::in | ios::out</code>.</label>
+    <label><input type="radio" name="q8" value="C"> En utilisant <code>ifstream</code> uniquement.</label>
+    <label><input type="radio" name="q8" value="D"> Cela n'est pas possible en C++.</label>
+</div>
+
+<div class="quiz-question">
+    <p>9. Lequel des manipulateurs suivants est utilisé pour remplir un espace vide lors de l’utilisation de <code>setw</code> ?</p>
+    <label><input type="radio" name="q9" value="A"> setfill</label>
+    <label><input type="radio" name="q9" value="B"> setprecision</label>
+    <label><input type="radio" name="q9" value="C"> endl</label>
+    <label><input type="radio" name="q9" value="D"> setbase</label>
+</div>
+
+<div class="quiz-question">
+    <p>10. Quelle méthode permet de déplacer le pointeur de lecture dans un fichier ?</p>
+    <label><input type="radio" name="q10" value="A"> tellg</label>
+    <label><input type="radio" name="q10" value="B"> seekg</label>
+    <label><input type="radio" name="q10" value="C"> seekp</label>
+    <label><input type="radio" name="q10" value="D"> read</label>
+</div>
+
+<div class="quiz-question">
+    <p>11. Comment peut-on vérifier si la fin d’un fichier a été atteinte en C++ ?</p>
+    <label><input type="radio" name="q11" value="A"> Avec la méthode <code>fail()</code>.</label>
+    <label><input type="radio" name="q11" value="B"> Avec la méthode <code>eof()</code>.</label>
+    <label><input type="radio" name="q11" value="C"> Avec la méthode <code>clear()</code>.</label>
+    <label><input type="radio" name="q11" value="D"> Avec la méthode <code>good()</code>.</label>
+</div>
+
 
             <button type="button" onclick="submitQuiz()">Soumettre</button>
         </form>
@@ -138,26 +203,56 @@ int main() {
 
 <script>
     const correctAnswers = {
-        q1: "B",
-        q2: "B",
-        q3: "A",
-        q4: "B"
-    };
+    q1: "B",
+    q2: "B",
+    q3: "A",
+    q4: "B",
+    q5: "B",
+    q6: "B",
+    q7: "B",
+    q8: "B",
+    q9: "A",
+    q10: "B",
+    q11: "B"
+};
 
-    function submitQuiz() {
-        let score = 0;
-        const form = document.getElementById('quiz-form');
-        const resultDiv = document.getElementById('quiz-result');
+function submitQuiz() {
+    let score = 0;
+    const form = document.getElementById('quiz-form');
+    const resultDiv = document.getElementById('quiz-result');
 
-        for (let key in correctAnswers) {
-            const answer = form[key].value;
-            if (answer === correctAnswers[key]) {
-                score++;
+    // Parcours des réponses correctes
+    for (let key in correctAnswers) {
+        const questionInputs = form[key];
+        let selectedAnswer = null;
+
+        // Vérifie quelle réponse a été sélectionnée
+        for (let input of questionInputs) {
+            if (input.checked) {
+                selectedAnswer = input.value;
             }
+
+            // Réinitialise les styles
+            input.parentElement.classList.remove("correct-answer");
         }
 
-        resultDiv.textContent = `Votre score est : ${score} / ${Object.keys(correctAnswers).length}`;
+        // Compare la réponse sélectionnée à la bonne réponse
+        if (selectedAnswer === correctAnswers[key]) {
+            score++;
+            // Marque la bonne réponse en vert
+            for (let input of questionInputs) {
+                if (input.value === correctAnswers[key]) {
+                    input.parentElement.classList.add("correct-answer");
+                }
+            }
+        }
     }
+
+    // Affiche le score
+    resultDiv.textContent = `Votre score est : ${score} / ${Object.keys(correctAnswers).length}`;
+}
+
+    
 </script>
 
 </body>
