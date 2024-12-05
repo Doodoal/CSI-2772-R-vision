@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé et Quiz</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #2F85ED;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .quiz-section {
+            margin-top: 20px;
+        }
+        .question {
+            margin: 15px 0;
+        }
+        .question h4 {
+            margin-bottom: 10px;
+        }
+        .options input {
+            margin-right: 10px;
+        }
+        .submit-btn {
+            background-color: #2F85ED;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #1A6BD8;
+        }
+        .correct-answer {
+            color: green;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: red;
+            font-weight: bold;
+        }
+        .score {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Conteneurs séquentiels</h1>
+        </div>
+        <div class="content">
+            <h2>Résumé</h2>
+<p>
+    La lecture 17 fournit une introduction approfondie aux conteneurs séquentiels en C++ (vector, deque, et list) 
+    et à leurs adaptateurs (stack, queue, et priority_queue). Voici les points essentiels :
+</p>
+
+<h3>1. Conteneurs Séquentiels</h3>
+<ul>
+    <li>
+        <b>Vector</b> : Tableau dynamique offrant un accès direct aux éléments avec des fonctionnalités avancées 
+        d’insertion, suppression, et gestion de mémoire.
+    </li>
+    <li>
+        <b>Deque</b> : Extension de vector permettant des insertions/suppressions en début et en fin, mais avec 
+        des limitations de gestion de mémoire.
+    </li>
+    <li>
+        <b>List</b> : Liste doublement chaînée permettant des insertions et suppressions efficaces n'importe où, 
+        mais sans accès direct aux éléments.
+    </li>
+</ul>
+
+<h3>2. Fonctionnalités Communes</h3>
+<ul>
+    <li>Construction (vide, avec un nombre défini d’éléments ou à partir d’un autre conteneur).</li>
+    <li>Modifications globales (affectation, assign, clear, swap).</li>
+    <li>Comparaison des conteneurs (<code>==</code>, <code>&lt;</code>, etc.) basée sur des comparaisons lexicographiques.</li>
+    <li>Insertion et suppression (par index, intervalle ou position).</li>
+</ul>
+
+<h3>3. Gestion de Mémoire</h3>
+<ul>
+    <li>
+        <b>Vector</b> offre des outils comme <code>capacity</code>, <code>reserve</code>, <code>resize</code>, 
+        et <code>max_size</code> pour optimiser les allocations.
+    </li>
+    <li>
+        <b>List</b> et <b>Deque</b> ont des règles strictes sur l’invalidation des itérateurs.
+    </li>
+</ul>
+
+<h3>4. Adaptateurs de Conteneurs</h3>
+<ul>
+    <li><b>Stack</b> : Implémente une pile (LIFO).</li>
+    <li><b>Queue</b> : Implémente une file d’attente (FIFO).</li>
+    <li>
+        <b>Priority Queue</b> : File d’attente où les éléments sont organisés selon une priorité donnée.
+    </li>
+</ul>
+
+<h3>5. Opérations Spécifiques</h3>
+<ul>
+    <li>Insertions (<code>push_back</code>, <code>push_front</code>, <code>insert</code>).</li>
+    <li>Suppressions (<code>pop_back</code>, <code>pop_front</code>, <code>erase</code>, <code>remove</code>, <code>remove_if</code>).</li>
+    <li>Tri (fonction <code>sort</code> pour <b>list</b>).</li>
+    <li>Fusion et transfert de listes (<code>merge</code>, <code>splice</code>).</li>
+    <li>Suppression d’éléments en double (<code>unique</code>).</li>
+</ul>
+
+
+            <div class="quiz-section">
+                <h2>Quiz</h2>
+                <form id="quiz-form">
+                    <div class="question" data-correct="b">
+                        <h4>1. Quels sont les trois principaux conteneurs séquentiels en C++ ?</h4>
+                        <div class="options">
+                            <input type="radio" name="q1" value="a" id="q1a">
+                            <label for="q1a">Array, map, stack</label><br>
+                            <input type="radio" name="q1" value="b" id="q1b">
+                            <label for="q1b">Vector, deque, list</label><br>
+                            <input type="radio" name="q1" value="c" id="q1c">
+                            <label for="q1c">Set, vector, queue</label>
+                        </div>
+                    </div>
+                    <div class="question" data-correct="b">
+                        <h4>2. Quelle est la différence majeure entre un vector et une list ?</h4>
+                        <div class="options">
+                            <input type="radio" name="q2" value="a" id="q2a">
+                            <label for="q2a">Vector est plus rapide pour les insertions au milieu.</label><br>
+                            <input type="radio" name="q2" value="b" id="q2b">
+                            <label for="q2b">List permet des insertions/suppressions efficaces, vector permet un accès direct.</label><br>
+                            <input type="radio" name="q2" value="c" id="q2c">
+                            <label for="q2c">List a une meilleure gestion mémoire que vector.</label>
+                        </div>
+                    </div>
+                    <!-- Add more questions here -->
+			<div class="question" data-correct="a">
+    <h4>3. Que fait la fonction <code>reserve</code> dans un vector ?</h4>
+    <div class="options">
+        <input type="radio" name="q3" value="a" id="q3a">
+        <label for="q3a">Elle réserve un espace mémoire minimal pour éviter des réallocations fréquentes.</label><br>
+        <input type="radio" name="q3" value="b" id="q3b">
+        <label for="q3b">Elle réinitialise la taille du vector à zéro.</label><br>
+        <input type="radio" name="q3" value="c" id="q3c">
+        <label for="q3c">Elle supprime les éléments d’un vector.</label>
+    </div>
+</div>
+
+<div class="question" data-correct="b">
+    <h4>4. Citez un avantage des listes sur les vectors.</h4>
+    <div class="options">
+        <input type="radio" name="q4" value="a" id="q4a">
+        <label for="q4a">Les listes permettent un accès direct aux éléments par index.</label><br>
+        <input type="radio" name="q4" value="b" id="q4b">
+        <label for="q4b">Les listes permettent des insertions et suppressions efficaces à n’importe quelle position.</label><br>
+        <input type="radio" name="q4" value="c" id="q4c">
+        <label for="q4c">Les listes utilisent moins de mémoire que les vectors.</label>
+    </div>
+</div>
+
+<div class="question" data-correct="a">
+    <h4>5. Quel adaptateur de conteneur permet d’implémenter une pile LIFO ?</h4>
+    <div class="options">
+        <input type="radio" name="q5" value="a" id="q5a">
+        <label for="q5a">Stack</label><br>
+        <input type="radio" name="q5" value="b" id="q5b">
+        <label for="q5b">Queue</label><br>
+        <input type="radio" name="q5" value="c" id="q5c">
+        <label for="q5c">Priority Queue</label>
+    </div>
+</div>
+
+<div class="question" data-correct="a">
+    <h4>6. Expliquez la fonction <code>unique</code> dans une liste.</h4>
+    <div class="options">
+        <input type="radio" name="q6" value="a" id="q6a">
+        <label for="q6a">Elle supprime les éléments consécutifs identiques dans une liste triée.</label><br>
+        <input type="radio" name="q6" value="b" id="q6b">
+        <label for="q6b">Elle supprime tous les éléments d’une liste.</label><br>
+        <input type="radio" name="q6" value="c" id="q6c">
+        <label for="q6c">Elle trie une liste en supprimant les doublons.</label>
+    </div>
+</div>
+
+<div class="question" data-correct="b">
+    <h4>7. Pourquoi <code>vector</code> est-il plus rapide que <code>deque</code> pour certaines opérations ?</h4>
+    <div class="options">
+        <input type="radio" name="q7" value="a" id="q7a">
+        <label for="q7a">Parce que deque utilise un tableau statique.</label><br>
+        <input type="radio" name="q7" value="b" id="q7b">
+        <label for="q7b">Parce que vector est alloué en un seul bloc mémoire.</label><br>
+        <input type="radio" name="q7" value="c" id="q7c">
+        <label for="q7c">Parce que vector a des itérateurs plus rapides.</label>
+    </div>
+</div>
+
+<div class="question" data-correct="a">
+    <h4>8. Quelle fonction est utilisée pour insérer un élément en début de <code>deque</code> ?</h4>
+    <div class="options">
+        <input type="radio" name="q8" value="a" id="q8a">
+        <label for="q8a">push_front</label><br>
+        <input type="radio" name="q8" value="b" id="q8b">
+        <label for="q8b">push_back</label><br>
+        <input type="radio" name="q8" value="c" id="q8c">
+        <label for="q8c">insert</label>
+    </div>
+</div>
+
+<div class="question" data-correct="c">
+    <h4>9. Que se passe-t-il si un itérateur devient invalide après une modification du conteneur ?</h4>
+    <div class="options">
+        <input type="radio" name="q9" value="a" id="q9a">
+        <label for="q9a">Il provoque une exception immédiate.</label><br>
+        <input type="radio" name="q9" value="b" id="q9b">
+        <label for="q9b">Il corrige automatiquement sa position.</label><br>
+        <input type="radio" name="q9" value="c" id="q9c">
+        <label for="q9c">Il devient inutilisable pour accéder aux éléments modifiés ou déplacés.</label>
+    </div>
+</div>
+
+<div class="question" data-correct="b">
+    <h4>10. Quelle est la principale différence entre <code>stack</code> et <code>queue</code> ?</h4>
+    <div class="options">
+        <input type="radio" name="q10" value="a" id="q10a">
+        <label for="q10a">Stack suit une logique FIFO, queue suit une logique LIFO.</label><br>
+        <input type="radio" name="q10" value="b" id="q10b">
+        <label for="q10b">Stack suit une logique LIFO, queue suit une logique FIFO.</label><br>
+        <input type="radio" name="q10" value="c" id="q10c">
+        <label for="q10c">Stack permet un accès direct aux éléments, queue ne le permet pas.</label>
+    </div>
+</div>
+
+                    <button type="button" class="submit-btn" onclick="submitQuiz()">Soumettre</button>
+                </form>
+                <div id="score" class="score"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            const questions = document.querySelectorAll('.question');
+            let score = 0;
+
+            questions.forEach((question) => {
+                const correctAnswer = question.getAttribute('data-correct');
+                const options = question.querySelectorAll('input[type="radio"]');
+
+                options.forEach((option) => {
+                    const label = question.querySelector(`label[for="${option.id}"]`);
+
+                    // Reset styles
+                    label.classList.remove('correct-answer', 'wrong-answer');
+
+                    if (option.checked) {
+                        if (option.value === correctAnswer) {
+                            label.classList.add('correct-answer');
+                            score++;
+                        } else {
+                            label.classList.add('wrong-answer');
+                        }
+                    } else if (option.value === correctAnswer) {
+                        label.classList.add('correct-answer');
+                    }
+                });
+            });
+
+            const totalQuestions = questions.length;
+            const scoreDiv = document.getElementById("score");
+            scoreDiv.innerHTML = `Votre score : ${score}/${totalQuestions}`;
+        }
+    </script>
+</body>
+</html>
