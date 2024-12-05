@@ -1,0 +1,1223 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM - CSI 2772 (Chapitres 1 à 17)</title>
+    <style>
+        /* Style global */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f4ff; /* Fond bleu clair */
+            color: #333; /* Texte sombre */
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #0056b3; /* Bleu foncé */
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e9f3ff; /* Fond bleu très clair */
+            border-radius: 8px;
+            border: 1px solid #d0e5ff;
+        }
+
+        .question strong {
+            font-size: 1.1rem;
+            color: #004080; /* Bleu plus intense */
+        }
+
+        .answers {
+            margin-left: 20px;
+        }
+
+        /* Blocs de code */
+        code {
+            display: block;
+            background-color: #001f3f; /* Bleu foncé */
+            color: #fff; /* Texte blanc */
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: #fff;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004080;
+        }
+
+        /* Score et résultats */
+        #score {
+            font-weight: bold;
+            color: #0056b3;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        #results {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Radio boutons et labels */
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        label {
+            font-size: 1rem;
+        }
+
+        label[style*="color: green"] {
+            font-weight: bold;
+        }
+
+        label[style*="color: red"] {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>QCM - CSI 2772</h1>
+    <h2>Chapitres 1 a 17</h2>
+    <p>Repondez aux questions suivantes et appuyez sur "Soumettre" pour obtenir votre score.</p>
+
+    <form onsubmit="event.preventDefault(); calculateScore();">
+        <!-- Vos questions ici -->
+        <!-- (Copiez vos questions ici, comme vous l'avez déjà fait) -->
+        <button type="submit">Soumettre</button>
+    </form>
+
+    <!-- Section pour afficher les résultats -->
+    <p id="score"></p>
+    <div id="results"></div>
+
+    <script>
+    function calculateScore() {
+        // Définir les réponses correctes
+        const correctAnswers = {
+            "q1_1": "1",
+            "q1_2": "1",
+            "q2_1": "3",
+            "q3_1": "2",
+            "q3_2": "2",
+            "q4_1": "4",
+            "q4_2": "1",
+            "q4_3": "2",
+            "q5_1": "1",
+            "q5_2": "1",
+            "q5_3": "1",
+            "q5_4": "1",
+            "q5_5": "3",
+            "q5_6": "2",
+            "q6_1": "2",
+            "q6_2": "2",
+            "q6_3": "1",
+            "q6_4": "1",
+            "q7_1": "1",
+            "q7_2": "1",
+            "q8_1": "2",
+            "q8_2": "4",
+            "q9_1": "1",
+            "q9_2": "1",
+            "q10_1": "1",
+            "q10_2": "2",
+            "q11_1": "1",
+            "q11_2": "1",
+            "q12_1": "2",
+            "q12_2": "2",
+            "q13_1": "1",
+            "q14_1": "2",
+            "q14_2": "1",
+            "q15_1": "1",
+            "q15_2": "1",
+            "q16_1": "1",
+            "q16_2": "2",
+            "q17": "1",
+            "q18": "1",
+            "q19": "1",
+            "q20": "1",
+            "q21": "1",
+            "q22": "1",
+            "q23": "3",
+            "q24": "1",
+            "q25": "1",
+            "q26": "1"
+        };
+
+        let score = 0;
+    const totalQuestions = Object.keys(correctAnswers).length;
+
+    // Parcourir les réponses utilisateur
+    for (let question in correctAnswers) {
+        const userAnswer = document.querySelector(`input[name="${question}"]:checked`);
+        const correctAnswer = correctAnswers[question];
+        const correctInputId = `${question}_${correctAnswer}`;
+        const correctLabel = document.querySelector(`label[for="${question}${correctAnswer}"]`);
+
+        // Si l'utilisateur a sélectionné une réponse
+        if (userAnswer) {
+            if (userAnswer.value === correctAnswer) {
+                // Bonne réponse sélectionnée
+                score++;
+                const correctLabelSelected = document.querySelector(`label[for="${userAnswer.id}"]`);
+                correctLabelSelected.style.color = "green";
+                correctLabelSelected.innerHTML += " ✅";
+            } else {
+                // Mauvaise réponse sélectionnée
+                const wrongLabel = document.querySelector(`label[for="${userAnswer.id}"]`);
+                wrongLabel.style.color = "red";
+                wrongLabel.innerHTML += " ❌";
+            }
+        }
+
+        // Toujours marquer la bonne réponse en vert
+        if (correctLabel) {
+            correctLabel.style.color = "green";
+            correctLabel.style.fontWeight = "bold";
+            if (!correctLabel.innerHTML.includes("✅")) {
+                correctLabel.innerHTML += " ✅";
+            }
+        }
+    }
+
+    // Calculer le score final
+    const finalScore = (score / totalQuestions) * 100;
+
+    // Afficher le score
+    const scoreMessage = `Votre score : ${finalScore.toFixed(2)}% (${score} / ${totalQuestions})`;
+    document.getElementById("score").innerText = scoreMessage;
+
+    }
+</script>
+</body>
+</html>
+    <h1>QCM - CSI 2772</h1>
+    <h2>Chapitres 1 a 17</h2>
+   <p>Repondez aux questions suivantes et appuyez sur "Soumettre" pour obtenir votre score.</p>
+
+<form onsubmit="event.preventDefault(); calculateScore();">
+    <!-- Questions -->
+    <div class="question">
+        <strong>Question 1.1 : Quel est le probleme dans ce code ?</strong>
+        <code>
+#include &lt;iostream&gt;
+using namespace std;
+
+class MyClass {
+    int x;
+public:
+    void setX(int value) { x = value; }
+    void printX() { cout &lt;&lt; x &lt;&lt; endl; }
+};
+
+int main() {
+    MyClass obj;
+    obj.printX();
+    return 0;
+}
+        </code>
+        <div class="answers">
+            <input type="radio" name="q1_1" id="q1_1a" value="1">
+            <label for="q1_1a">Il manque une methode pour initialiser la variable x.</label><br>
+            <input type="radio" name="q1_1" id="q1_1b" value="2">
+            <label for="q1_1b">cout n'est pas defini dans ce contexte.</label><br>
+            <input type="radio" name="q1_1" id="q1_1c" value="3">
+            <label for="q1_1c">L'objet obj n'a pas ete declare.</label><br>
+            <input type="radio" name="q1_1" id="q1_1d" value="4">
+            <label for="q1_1d">Il manque une declaration pour setX.</label>
+        </div>
+    </div>
+
+    <!-- Question 1.2 -->
+    <div class="question">
+        <strong>Question 1.2 : Identifiez l'erreur dans ce programme.</strong>
+        <code>
+#include &lt;vector&gt;<br>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    vector&lt;int&gt; v;<br>
+    v.push_back(10);<br>
+    v.push_back(20);<br>
+    cout &lt;&lt; v[2] &lt;&lt; endl;<br>
+    return 0;<br>
+}
+        </code>
+        <div class="answers">
+            <input type="radio" name="q1_2" id="q1_2a" value="1">
+            <label for="q1_2a">Le code tente d'acceder a une position hors limites du vecteur.</label><br>
+            <input type="radio" name="q1_2" id="q1_2b" value="2">
+            <label for="q1_2b">La bibliotheque &lt;vector&gt; n'est pas incluse.</label><br>
+            <input type="radio" name="q1_2" id="q1_2c" value="3">
+            <label for="q1_2c">push_back ne peut pas etre utilise avec un vecteur.</label><br>
+            <input type="radio" name="q1_2" id="q1_2d" value="4">
+            <label for="q1_2d">Il manque une initialisation explicite de v.</label>
+        </div>
+    </div>
+
+    <!-- Question 2.1 -->
+    <div class="question">
+        <strong>Question 2.1 : Quelle est la syntaxe correcte pour declarer une classe abstraite en C++ ?</strong>
+        <div class="answers">
+            <input type="radio" name="q2_1" id="q2_1a" value="1">
+            <label for="q2_1a">class Abstract {};</label><br>
+            <input type="radio" name="q2_1" id="q2_1b" value="2">
+            <label for="q2_1b">class Abstract { virtual void method() {} };</label><br>
+            <input type="radio" name="q2_1" id="q2_1c" value="3">
+            <label for="q2_1c">class Abstract { virtual void method() = 0; };</label><br>
+            <input type="radio" name="q2_1" id="q2_1d" value="4">
+            <label for="q2_1d">class Abstract { void method() = 0; };</label>
+        </div>
+    </div>
+
+    <!-- Question 3.1 -->
+    <div class="question">
+        <strong>Question 3.1 : Pour effacer tous les elements d'un vecteur v, quelle methode utilisez-vous ?</strong>
+        <div class="answers">
+            <input type="radio" name="q3_1" id="q3_1a" value="1">
+            <label for="q3_1a">v.delete();</label><br>
+            <input type="radio" name="q3_1" id="q3_1b" value="2">
+            <label for="q3_1b">v.clear();</label><br>
+            <input type="radio" name="q3_1" id="q3_1c" value="3">
+            <label for="q3_1c">v.erase();</label><br>
+            <input type="radio" name="q3_1" id="q3_1d" value="4">
+            <label for="q3_1d">v.removeAll();</label>
+        </div>
+    </div>
+
+    <!-- Question 3.2 -->
+    <div class="question">
+        <strong>Question 3.2 : Comment acceder a la cle et a la valeur dans une map lors d'une iteration ?</strong>
+        <div class="answers">
+            <input type="radio" name="q3_2" id="q3_2a" value="1">
+            <label for="q3_2a">for (auto it = myMap.begin(); it != myMap.end(); ++it) cout &lt;&lt; *it.first &lt;&lt; *it.second;</label><br>
+            <input type="radio" name="q3_2" id="q3_2b" value="2">
+            <label for="q3_2b">for (auto it = myMap.begin(); it != myMap.end(); ++it) cout &lt;&lt; it-&gt;first &lt;&lt; it-&gt;second;</label><br>
+            <input type="radio" name="q3_2" id="q3_2c" value="3">
+            <label for="q3_2c">for (pair&lt;string, int&gt; p : myMap) cout &lt;&lt; p.key &lt;&lt; p.value;</label><br>
+            <input type="radio" name="q3_2" id="q3_2d" value="4">
+            <label for="q3_2d">for (auto it : myMap) cout &lt;&lt; it.first &lt;&lt; it.second;</label>
+        </div>
+    </div>
+
+<!-- Question 4.1 -->
+<div class="question">
+    <strong>Question 4.1 : Qu'est-ce qu'un constructeur par defaut en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q4_1" id="q4_1a" value="1">
+        <label for="q4_1a">Une methode qui initialise les attributs a des valeurs par defaut.</label><br>
+        <input type="radio" name="q4_1" id="q4_1b" value="2">
+        <label for="q4_1b">Une methode appelee uniquement si un objet n'est pas declare explicitement.</label><br>
+        <input type="radio" name="q4_1" id="q4_1c" value="3">
+        <label for="q4_1c">Une methode qui initialise tous les objets avec les memes valeurs.</label><br>
+        <input type="radio" name="q4_1" id="q4_1d" value="4">
+        <label for="q4_1d">Une methode qui ne prend aucun parametre ou dont tous les parametres ont des valeurs par defaut.</label>
+    </div>
+</div>
+
+<!-- Question 4.2 -->
+<div class="question">
+    <strong>Question 4.2 : Quel est le role d'un destructeur ?</strong>
+    <div class="answers">
+        <input type="radio" name="q4_2" id="q4_2a" value="1">
+        <label for="q4_2a">Liberer la memoire allouee dynamiquement par un objet.</label><br>
+        <input type="radio" name="q4_2" id="q4_2b" value="2">
+        <label for="q4_2b">Detruire un objet des qu'il est hors de portee.</label><br>
+        <input type="radio" name="q4_2" id="q4_2c" value="3">
+        <label for="q4_2c">Liberer automatiquement la memoire pour tout membre prive.</label><br>
+        <input type="radio" name="q4_2" id="q4_2d" value="4">
+        <label for="q4_2d">Les destructeurs sont uniquement utilises avec des pointeurs.</label>
+    </div>
+</div>
+
+<!-- Question 4.3 -->
+<div class="question">
+    <strong>Question 4.3 : Que dit la regle des trois en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q4_3" id="q4_3a" value="1">
+        <label for="q4_3a">Une classe necessitant un destructeur personnalise devrait egalement definir un constructeur par defaut.</label><br>
+        <input type="radio" name="q4_3" id="q4_3b" value="2">
+        <label for="q4_3b">Une classe necessitant un destructeur personnalise devrait egalement definir un constructeur de copie et un operateur d'affectation.</label><br>
+        <input type="radio" name="q4_3" id="q4_3c" value="3">
+        <label for="q4_3c">Une classe avec des donnees privees necessite trois methodes publiques.</label><br>
+        <input type="radio" name="q4_3" id="q4_3d" value="4">
+        <label for="q4_3d">Une classe ne doit jamais avoir plus de trois methodes avec le meme nom.</label>
+    </div>
+</div>
+
+<!-- Question 5.1 -->
+<div class="question">
+    <strong>Question 5.1 : A quoi sert un iterateur dans la STL ?</strong>
+    <div class="answers">
+        <input type="radio" name="q5_1" id="q5_1a" value="1">
+        <label for="q5_1a">A parcourir les elements d'un conteneur sequentiellement.</label><br>
+        <input type="radio" name="q5_1" id="q5_1b" value="2">
+        <label for="q5_1b">A modifier directement les elements d'un conteneur.</label><br>
+        <input type="radio" name="q5_1" id="q5_1c" value="3">
+        <label for="q5_1c">A stocker des paires cle-valeur.</label><br>
+        <input type="radio" name="q5_1" id="q5_1d" value="4">
+        <label for="q5_1d">A remplacer les boucles classiques pour des conteneurs.</label>
+    </div>
+</div>
+
+<!-- Question 5.2 -->
+<div class="question">
+    <strong>Question 5.2 : Quelle est la difference entre vector et list en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q5_2" id="q5_2a" value="1">
+        <label for="q5_2a">Un vector est base sur une structure contigue en memoire, alors qu'une list est une liste doublement chainee.</label><br>
+        <input type="radio" name="q5_2" id="q5_2b" value="2">
+        <label for="q5_2b">Un vector permet des insertions rapides au milieu, contrairement a une list.</label><br>
+        <input type="radio" name="q5_2" id="q5_2c" value="3">
+        <label for="q5_2c">Une list permet un acces direct par index, contrairement a un vector.</label><br>
+        <input type="radio" name="q5_2" id="q5_2d" value="4">
+        <label for="q5_2d">Une list est triee automatiquement, contrairement a un vector.</label>
+    </div>
+</div>
+
+<!-- Question 5.3 -->
+<div class="question">
+    <strong>Question 5.3 : Quelle est la bonne syntaxe pour surcharger l'operateur d'egalite (==) dans une classe ?</strong>
+    <div class="answers">
+        <input type="radio" name="q5_3" id="q5_3a" value="1">
+        <label for="q5_3a">bool operator==(const MyClass& obj);</label><br>
+        <input type="radio" name="q5_3" id="q5_3b" value="2">
+        <label for="q5_3b">bool operator==(MyClass obj);</label><br>
+        <input type="radio" name="q5_3" id="q5_3c" value="3">
+        <label for="q5_3c">void operator==(const MyClass& obj);</label><br>
+        <input type="radio" name="q5_3" id="q5_3d" value="4">
+        <label for="q5_3d">MyClass operator==(const MyClass& obj);</label>
+    </div>
+</div>
+
+<!-- Question 5.4 -->
+<div class="question">
+    <strong>Question 5.4 : Quelle est la difference entre une classe et une structure en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q5_4" id="q5_4a" value="1">
+        <label for="q5_4a">Les membres d'une classe sont prives par defaut, ceux d'une structure sont publics par defaut.</label><br>
+        <input type="radio" name="q5_4" id="q5_4b" value="2">
+        <label for="q5_4b">Les classes peuvent heriter, les structures ne peuvent pas.</label><br>
+        <input type="radio" name="q5_4" id="q5_4c" value="3">
+        <label for="q5_4c">Les classes peuvent avoir des destructeurs, les structures ne peuvent pas.</label><br>
+        <input type="radio" name="q5_4" id="q5_4d" value="4">
+        <label for="q5_4d">Il n'y a aucune difference entre les deux en C++.</label>
+    </div>
+</div>
+
+<!-- Question 5.5 -->
+<div class="question">
+    <strong>Question 5.5 : Quel conteneur est le mieux adapte pour stocker des donnees triees en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q5_5" id="q5_5a" value="1">
+        <label for="q5_5a">std::vector</label><br>
+        <input type="radio" name="q5_5" id="q5_5b" value="2">
+        <label for="q5_5b">std::list</label><br>
+        <input type="radio" name="q5_5" id="q5_5c" value="3">
+        <label for="q5_5c">std::set</label><br>
+        <input type="radio" name="q5_5" id="q5_5d" value="4">
+        <label for="q5_5d">std::deque</label>
+    </div>
+</div>
+
+<!-- Question 5.6 -->
+<div class="question">
+    <strong>Question 5.6 : Quel est le role de la fonction virtuelle pure dans une classe abstraite ?</strong>
+    <div class="answers">
+        <input type="radio" name="q5_6" id="q5_6a" value="1">
+        <label for="q5_6a">Elle rend la classe instanciable.</label><br>
+        <input type="radio" name="q5_6" id="q5_6b" value="2">
+        <label for="q5_6b">Elle oblige les classes derivees a implementer cette fonction.</label><br>
+        <input type="radio" name="q5_6" id="q5_6c" value="3">
+        <label for="q5_6c">Elle supprime automatiquement les instances inutilisees.</label><br>
+        <input type="radio" name="q5_6" id="q5_6d" value="4">
+        <label for="q5_6d">Elle permet d'heriter d'une autre classe abstraite.</label>
+    </div>
+</div>
+
+<!-- Question 6.1 -->
+<div class="question">
+    <strong>Question 6.1 : Comment ajouter un element a la fin d'un std::deque ?</strong>
+    <div class="answers">
+        <input type="radio" name="q6_1" id="q6_1a" value="1">
+        <label for="q6_1a">deque.push_front(element);</label><br>
+        <input type="radio" name="q6_1" id="q6_1b" value="2">
+        <label for="q6_1b">deque.push_back(element);</label><br>
+        <input type="radio" name="q6_1" id="q6_1c" value="3">
+        <label for="q6_1c">deque.insert(element);</label><br>
+        <input type="radio" name="q6_1" id="q6_1d" value="4">
+        <label for="q6_1d">deque.add(element);</label>
+    </div>
+</div>
+
+<!-- Question 6.2 -->
+<div class="question">
+    <strong>Question 6.2 : Qu'est-ce qu'un std::map en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q6_2" id="q6_2a" value="1">
+        <label for="q6_2a">Un conteneur de type pile (stack).</label><br>
+        <input type="radio" name="q6_2" id="q6_2b" value="2">
+        <label for="q6_2b">Un conteneur associatif stockant des paires cle-valeur triees par cle.</label><br>
+        <input type="radio" name="q6_2" id="q6_2c" value="3">
+        <label for="q6_2c">Un conteneur non ordonne.</label><br>
+        <input type="radio" name="q6_2" id="q6_2d" value="4">
+        <label for="q6_2d">Un conteneur qui permet des doublons.</label>
+    </div>
+
+</div>
+<!-- Question 6.3 -->
+<div class="question">
+    <strong>Question 6.3 : Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+class Test {<br>
+    static int count;<br>
+public:<br>
+    Test() { count++; }<br>
+};<br><br>
+int main() {<br>
+    Test t1;<br>
+    Test t2;<br>
+    cout &lt;&lt; Test::count &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q6_3" id="q6_3a" value="1">
+        <label for="q6_3a">La variable count doit etre initialisee en dehors de la classe.</label><br>
+        <input type="radio" name="q6_3" id="q6_3b" value="2">
+        <label for="q6_3b">La variable count ne peut pas etre statique.</label><br>
+        <input type="radio" name="q6_3" id="q6_3c" value="3">
+        <label for="q6_3c">Le constructeur ne doit pas incrementer count.</label><br>
+        <input type="radio" name="q6_3" id="q6_3d" value="4">
+        <label for="q6_3d">Il manque un destructeur pour decrementer count.</label>
+    </div>
+</div>
+
+<!-- Question 6.4 -->
+<div class="question">
+    <strong>Question 6.4 : Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;vector&gt;<br>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    vector&lt;int&gt; v(5, 10);<br>
+    v.resize(2);<br>
+    cout &lt;&lt; v[3] &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q6_4" id="q6_4a" value="1">
+        <label for="q6_4a">Le code tente d'acceder a un element hors limites apres un resize.</label><br>
+        <input type="radio" name="q6_4" id="q6_4b" value="2">
+        <label for="q6_4b">Le vecteur n'a pas ete declare correctement.</label><br>
+        <input type="radio" name="q6_4" id="q6_4c" value="3">
+        <label for="q6_4c">resize(2) est une methode invalide.</label><br>
+        <input type="radio" name="q6_4" id="q6_4d" value="4">
+        <label for="q6_4d">Les vecteurs ne peuvent pas etre initialises avec des valeurs par defaut.</label>
+    </div>
+</div>
+<!-- Question 7.1 -->
+<div class="question">
+    <strong>Question 7.1 : Quelle est la sortie de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+void print(int x = 10, int y = 20) {<br>
+    cout &lt;&lt; x &lt;&lt; " " &lt;&lt; y &lt;&lt; endl;<br>
+}<br><br>
+int main() {<br>
+    print(5);<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q7_1" id="q7_1a" value="1">
+        <label for="q7_1a">5 20</label><br>
+        <input type="radio" name="q7_1" id="q7_1b" value="2">
+        <label for="q7_1b">10 20</label><br>
+        <input type="radio" name="q7_1" id="q7_1c" value="3">
+        <label for="q7_1c">Erreur : appel invalide de la fonction.</label><br>
+        <input type="radio" name="q7_1" id="q7_1d" value="4">
+        <label for="q7_1d">5 10</label>
+    </div>
+</div>
+
+<!-- Question 7.2 -->
+<div class="question">
+    <strong>Question 7.2 : Quelle est la bonne syntaxe pour allouer dynamiquement un tableau en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q7_2" id="q7_2a" value="1">
+        <label for="q7_2a">int* arr = new int[10];</label><br>
+        <input type="radio" name="q7_2" id="q7_2b" value="2">
+        <label for="q7_2b">int arr = new int[10];</label><br>
+        <input type="radio" name="q7_2" id="q7_2c" value="3">
+        <label for="q7_2c">int arr = new int(10);</label><br>
+        <input type="radio" name="q7_2" id="q7_2d" value="4">
+        <label for="q7_2d">int* arr = new array&lt;int&gt;(10);</label>
+    </div>
+</div>
+
+<!-- Question 8.1 -->
+<div class="question">
+    <strong>Question 8.1 : Que fait ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+#include &lt;queue&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    queue&lt;int&gt; q;<br>
+    q.push(1);<br>
+    q.push(2);<br>
+    q.pop();<br>
+    cout &lt;&lt; q.front() &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q8_1" id="q8_1a" value="1">
+        <label for="q8_1a">1</label><br>
+        <input type="radio" name="q8_1" id="q8_1b" value="2">
+        <label for="q8_1b">2</label><br>
+        <input type="radio" name="q8_1" id="q8_1c" value="3">
+        <label for="q8_1c">Erreur : pop() ne modifie pas la file.</label><br>
+        <input type="radio" name="q8_1" id="q8_1d" value="4">
+        <label for="q8_1d">Erreur : front() n'est pas defini pour les queues.</label>
+    </div>
+</div>
+
+<!-- Question 8.2 -->
+<div class="question">
+    <strong>Question 8.2: Quel est le probleme dans ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+void printMessage(const char* msg) {<br>
+    cout &lt;&lt; msg &lt;&lt; endl;<br>
+}<br><br>
+int main() {<br>
+    char* message = "Bonjour";<br>
+    printMessage(message);<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q8_2" id="q8_2a" value="1">
+        <label for="q8_2a">La chaine doit etre declaree comme const.</label><br>
+        <input type="radio" name="q8_2" id="q8_2b" value="2">
+        <label for="q8_2b">L'appel a printMessage est incorrect.</label><br>
+        <input type="radio" name="q8_2" id="q8_2c" value="3">
+        <label for="q8_2c">Il manque une conversion de type.</label><br>
+        <input type="radio" name="q8_2" id="q8_2d" value="4">
+        <label for="q8_2d">Aucun probleme, le programme compile et s'execute correctement.</label>
+    </div>
+</div>
+
+<!-- Question 9.1 -->
+<div class="question">
+    <strong>Question 9.1: Quelle est la sortie de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    int a = 5;<br>
+    int b = 10;<br>
+    cout &lt;&lt; (a &lt; b ? "Plus petit" : "Plus grand") &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q9_1" id="q9_1a" value="1">
+        <label for="q9_1a">Plus petit</label><br>
+        <input type="radio" name="q9_1" id="q9_1b" value="2">
+        <label for="q9_1b">Plus grand</label><br>
+        <input type="radio" name="q9_1" id="q9_1c" value="3">
+        <label for="q9_1c">Erreur : operateur ternaire incorrect.</label><br>
+        <input type="radio" name="q9_1" id="q9_1d" value="4">
+        <label for="q9_1d">Erreur : la variable b n'est pas declaree.</label>
+    </div>
+</div>
+
+<!-- Question 9.2 -->
+<div class="question">
+    <strong>Question 9.2: Quelle est la bonne syntaxe pour inclure un fichier utilisateur ?</strong>
+    <div class="answers">
+        <input type="radio" name="q9_2" id="q9_2a" value="1">
+        <label for="q9_2a">#include "monfichier.h"</label><br>
+        <input type="radio" name="q9_2" id="q9_2b" value="2">
+        <label for="q9_2b">#include &lt;monfichier.h&gt;</label><br>
+        <input type="radio" name="q9_2" id="q9_2c" value="3">
+        <label for="q9_2c">#include (monfichier.h)</label><br>
+        <input type="radio" name="q9_2" id="q9_2d" value="4">
+        <label for="q9_2d">#include monfichier.h</label>
+    </div>
+</div>
+
+<!-- Question 10.1 -->
+<div class="question">
+    <strong>Question 10.1: Quelle est la sortie de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    int x = 5;<br>
+    cout &lt;&lt; ++x &lt;&lt; " " &lt;&lt; x++ &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q10_1" id="q10_1a" value="1">
+        <label for="q10_1a">6 6</label><br>
+        <input type="radio" name="q10_1" id="q10_1b" value="2">
+        <label for="q10_1b">5 6</label><br>
+        <input type="radio" name="q10_1" id="q10_1c" value="3">
+        <label for="q10_1c">6 5</label><br>
+        <input type="radio" name="q10_1" id="q10_1d" value="4">
+        <label for="q10_1d">Erreur : operateurs incorrects.</label>
+    </div>
+</div>
+
+<!-- Question 10.2 -->
+<div class="question">
+    <strong>Question 10.2: Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;vector&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    vector&lt;int&gt; v;<br>
+    v.push_back(10);<br>
+    cout &lt;&lt; v.at(1) &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q10_2" id="q10_2a" value="1">
+        <label for="q10_2a">Le vecteur est vide.</label><br>
+        <input type="radio" name="q10_2" id="q10_2b" value="2">
+        <label for="q10_2b">La position 1 est hors limites.</label><br>
+        <input type="radio" name="q10_2" id="q10_2c" value="3">
+        <label for="q10_2c">push_back n'ajoute pas d'element au vecteur.</label><br>
+        <input type="radio" name="q10_2" id="q10_2d" value="4">
+        <label for="q10_2d">Il manque l'inclusion de iostream.</label>
+    </div>
+</div>
+
+<!-- Question 11.1 -->
+<div class="question">
+    <strong>Question 11.1: Quel est le role de la methode resize dans std::vector ?</strong>
+    <div class="answers">
+        <input type="radio" name="q11_1" id="q11_1a" value="1">
+        <label for="q11_1a">Changer la taille du vecteur tout en conservant ses elements existants.</label><br>
+        <input type="radio" name="q11_1" id="q11_1b" value="2">
+        <label for="q11_1b">Ajouter un element a la fin du vecteur.</label><br>
+        <input type="radio" name="q11_1" id="q11_1c" value="3">
+        <label for="q11_1c">Supprimer tous les elements du vecteur.</label><br>
+        <input type="radio" name="q11_1" id="q11_1d" value="4">
+        <label for="q11_1d">Trier les elements du vecteur.</label>
+    </div>
+</div>
+
+<!-- Question 11.2 -->
+<div class="question">
+    <strong>Question 11.2: Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+#include &lt;map&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    map&lt;int, string&gt; m;<br>
+    m[1] = "one";<br>
+    m.insert(make_pair(1, "uno"));<br>
+    cout &lt;&lt; m[1] &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q11_2" id="q11_2a" value="1">
+        <label for="q11_2a">L'insertion echoue car la cle 1 existe deja.</label><br>
+        <input type="radio" name="q11_2" id="q11_2b" value="2">
+        <label for="q11_2b">La syntaxe de insert est incorrecte.</label><br>
+        <input type="radio" name="q11_2" id="q11_2c" value="3">
+        <label for="q11_2c">m[1] doit etre utilise uniquement apres l'appel a insert.</label><br>
+        <input type="radio" name="q11_2" id="q11_2d" value="4">
+        <label for="q11_2d">Aucun probleme, le programme affiche "one".</label>
+    </div>
+</div>
+
+<!-- Question 12.1 -->
+<div class="question">
+    <strong>Question 12.1: Quelle est la sortie de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+#include &lt;set&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    set&lt;int&gt; s;<br>
+    s.insert(3);<br>
+    s.insert(1);<br>
+    s.insert(2);<br>
+    for (auto it = s.begin(); it != s.end(); ++it)<br>
+        cout &lt;&lt; *it &lt;&lt; " ";<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q12_1" id="q12_1a" value="1">
+        <label for="q12_1a">3 1 2</label><br>
+        <input type="radio" name="q12_1" id="q12_1b" value="2">
+        <label for="q12_1b">1 2 3</label><br>
+        <input type="radio" name="q12_1" id="q12_1c" value="3">
+        <label for="q12_1c">Erreur : les sets ne supportent pas les iterateurs.</label><br>
+        <input type="radio" name="q12_1" id="q12_1d" value="4">
+        <label for="q12_1d">Erreur : la methode insert est invalide.</label>
+    </div>
+</div>
+
+<!-- Question 12.2 -->
+<div class="question">
+    <strong>Question 12.2: Quel est le role de la fonction at() dans std::vector ?</strong>
+    <div class="answers">
+        <input type="radio" name="q12_2" id="q12_2a" value="1">
+        <label for="q12_2a">Retourner une reference a un element sans verification des limites.</label><br>
+        <input type="radio" name="q12_2" id="q12_2b" value="2">
+        <label for="q12_2b">Retourner une reference a un element avec verification des limites.</label><br>
+        <input type="radio" name="q12_2" id="q12_2c" value="3">
+        <label for="q12_2c">Supprimer un element d'un vecteur.</label><br>
+        <input type="radio" name="q12_2" id="q12_2d" value="4">
+        <label for="q12_2d">Ajouter un element a la fin du vecteur.</label>
+    </div>
+</div>
+
+<!-- Question 13.1 -->
+<div class="question">
+    <strong>Question 13.1: Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+void printArray(int arr[]) {<br>
+    for (int i = 0; i &lt; 5; i++)<br>
+        cout &lt;&lt; arr[i] &lt;&lt; " ";<br>
+}<br><br>
+int main() {<br>
+    int arr[3] = {1, 2, 3};<br>
+    printArray(arr);<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q13_1" id="q13_1a" value="1">
+        <label for="q13_1a">La taille du tableau est incorrecte dans la fonction printArray.</label><br>
+        <input type="radio" name="q13_1" id="q13_1b" value="2">
+        <label for="q13_1b">La taille du tableau dans main est trop petite.</label><br>
+        <input type="radio" name="q13_1" id="q13_1c" value="3">
+        <label for="q13_1c">Il manque un constructeur pour le tableau.</label><br>
+        <input type="radio" name="q13_1" id="q13_1d" value="4">
+        <label for="q13_1d">Aucun probleme, le programme compile et affiche correctement les valeurs.</label>
+    </div>
+</div>
+
+<!-- Question 14.1 -->
+<div class="question">
+    <strong>Question 14.1: Quelle est la sortie de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    int a = 5, b = 10;<br>
+    swap(a, b);<br>
+    cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q14_1" id="q14_1a" value="1">
+        <label for="q14_1a">5 10</label><br>
+        <input type="radio" name="q14_1" id="q14_1b" value="2">
+        <label for="q14_1b">10 5</label><br>
+        <input type="radio" name="q14_1" id="q14_1c" value="3">
+        <label for="q14_1c">Erreur : swap n'est pas definie dans le contexte.</label><br>
+        <input type="radio" name="q14_1" id="q14_1d" value="4">
+        <label for="q14_1d">Erreur : swap ne peut pas etre utilise sur des entiers.</label>
+    </div>
+</div>
+
+<!-- Question 14.2 -->
+<div class="question">
+    <strong>Question 14.2: Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    int* ptr = nullptr;<br>
+    cout &lt;&lt; *ptr &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q14_2" id="q14_2a" value="1">
+        <label for="q14_2a">Le pointeur doit etre initialise avec une adresse valide avant d'etre dereference.</label><br>
+        <input type="radio" name="q14_2" id="q14_2b" value="2">
+        <label for="q14_2b">nullptr ne peut pas etre utilise pour un pointeur int.</label><br>
+        <input type="radio" name="q14_2" id="q14_2c" value="3">
+        <label for="q14_2c">Le pointeur doit etre declare comme const.</label><br>
+        <input type="radio" name="q14_2" id="q14_2d" value="4">
+        <label for="q14_2d">Aucun probleme, le programme affiche 0.</label>
+    </div>
+</div>
+
+<!-- Question 15.1 -->
+<div class="question">
+    <strong>Question 15.1: Quel est le resultat attendu de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    int x = 5;<br>
+    int* ptr = &x;<br>
+    cout &lt;&lt; *ptr &lt;&lt; endl;<br>
+    x = 10;<br>
+    cout &lt;&lt; *ptr &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q15_1" id="q15_1a" value="1">
+        <label for="q15_1a">5 10</label><br>
+        <input type="radio" name="q15_1" id="q15_1b" value="2">
+        <label for="q15_1b">10 10</label><br>
+        <input type="radio" name="q15_1" id="q15_1c" value="3">
+        <label for="q15_1c">5 5</label><br>
+        <input type="radio" name="q15_1" id="q15_1d" value="4">
+        <label for="q15_1d">Erreur : dereferencement de ptr invalide.</label>
+    </div>
+</div>
+
+<!-- Question 15.2 -->
+<div class="question">
+    <strong>Question 15.2: Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    int a = 10;<br>
+    int* p = &a;<br>
+    int* q = p;<br>
+    delete p;<br>
+    cout &lt;&lt; *q &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q15_2" id="q15_2a" value="1">
+        <label for="q15_2a">p ne doit pas etre supprime car il pointe vers une variable sur la pile.</label><br>
+        <input type="radio" name="q15_2" id="q15_2b" value="2">
+        <label for="q15_2b">q ne doit pas etre dereference apres la suppression de p.</label><br>
+        <input type="radio" name="q15_2" id="q15_2c" value="3">
+        <label for="q15_2c">delete doit etre remplace par free().</label><br>
+        <input type="radio" name="q15_2" id="q15_2d" value="4">
+        <label for="q15_2d">Aucun probleme, le programme affiche 10.</label>
+    </div>
+</div>
+
+<!-- Question 16.1 -->
+<div class="question">
+    <strong>Question 16.1: Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+void increment(int* p) {<br>
+    (*p)++;<br>
+}<br><br>
+int main() {<br>
+    int* ptr = nullptr;<br>
+    increment(ptr);<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q16_1" id="q16_1a" value="1">
+        <label for="q16_1a">ptr doit etre initialise avec une adresse valide avant d'etre passe a increment.</label><br>
+        <input type="radio" name="q16_1" id="q16_1b" value="2">
+        <label for="q16_1b">La fonction increment ne doit pas modifier directement la valeur du pointeur.</label><br>
+        <input type="radio" name="q16_1" id="q16_1c" value="3">
+        <label for="q16_1c">Le pointeur doit etre de type const.</label><br>
+        <input type="radio" name="q16_1" id="q16_1d" value="4">
+        <label for="q16_1d">Aucun probleme, le programme s'execute correctement.</label>
+    </div>
+</div>
+
+<!-- Question 16.2 -->
+<div class="question">
+    <strong>Question 16.2: Quelle est la sortie de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    int arr[] = {1, 2, 3};<br>
+    int* p = arr;<br>
+    cout &lt;&lt; *(p + 1) &lt;&lt; endl;<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q16_2" id="q16_2a" value="1">
+        <label for="q16_2a">1</label><br>
+        <input type="radio" name="q16_2" id="q16_2b" value="2">
+        <label for="q16_2b">2</label><br>
+        <input type="radio" name="q16_2" id="q16_2c" value="3">
+        <label for="q16_2c">3</label><br>
+        <input type="radio" name="q16_2" id="q16_2d" value="4">
+        <label for="q16_2d">Erreur : le pointeur p est invalide.</label>
+    </div>
+</div>
+
+<!-- Question 17 -->
+<div class="question">
+    <strong>Question 17: Quelle est la sortie de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    try {<br>
+        throw 10;<br>
+    } catch (int e) {<br>
+        cout &lt;&lt; "Exception attrapee: " &lt;&lt; e &lt;&lt; endl;<br>
+    }<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q17" id="q17a" value="1">
+        <label for="q17a">Exception attrapee: 10</label><br>
+        <input type="radio" name="q17" id="q17b" value="2">
+        <label for="q17b">Erreur : aucune exception attrapee.</label><br>
+        <input type="radio" name="q17" id="q17c" value="3">
+        <label for="q17c">Erreur : la clause catch doit etre vide.</label><br>
+        <input type="radio" name="q17" id="q17d" value="4">
+        <label for="q17d">Erreur de compilation.</label>
+    </div>
+</div>
+
+<!-- Question 18 -->
+<div class="question">
+    <strong>Question 18: Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    try {<br>
+        throw "Erreur fatale";<br>
+    } catch (int e) {<br>
+        cout &lt;&lt; "Exception attrapee: " &lt;&lt; e &lt;&lt; endl;<br>
+    }<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q18" id="q18a" value="1">
+        <label for="q18a">L'exception est de type const char*, mais le catch attend un int.</label><br>
+        <input type="radio" name="q18" id="q18b" value="2">
+        <label for="q18b">Il manque une clause throw pour relancer l'exception.</label><br>
+        <input type="radio" name="q18" id="q18c" value="3">
+        <label for="q18c">Les exceptions de type string ne sont pas supportees.</label><br>
+        <input type="radio" name="q18" id="q18d" value="4">
+        <label for="q18d">Aucun probleme, le programme affiche "Exception attrapee".</label>
+    </div>
+</div>
+
+<!-- Question 19 -->
+<div class="question">
+    <strong>Question 19: Que fait ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    try {<br>
+        throw runtime_error("Erreur d'execution");<br>
+    } catch (const runtime_error& e) {<br>
+        cout &lt;&lt; "Exception attrapee: " &lt;&lt; e.what() &lt;&lt; endl;<br>
+    }<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q19" id="q19a" value="1">
+        <label for="q19a">Affiche "Exception attrapee: Erreur d'execution".</label><br>
+        <input type="radio" name="q19" id="q19b" value="2">
+        <label for="q19b">Erreur de compilation: runtime_error n'est pas defini.</label><br>
+        <input type="radio" name="q19" id="q19c" value="3">
+        <label for="q19c">Erreur: aucune clause catch correspondante.</label><br>
+        <input type="radio" name="q19" id="q19d" value="4">
+        <label for="q19d">Erreur de segmentation.</label>
+    </div>
+</div>
+
+<!-- Question 20 -->
+<div class="question">
+    <strong>Question 20: Quel est le probleme dans ce code ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+void division(int a, int b) {<br>
+    if (b == 0)<br>
+        throw invalid_argument("Division par zero");<br>
+    cout &lt;&lt; a / b &lt;&lt; endl;<br>
+}<br><br>
+int main() {<br>
+    try {<br>
+        division(10, 0);<br>
+    } catch (const logic_error& e) {<br>
+        cout &lt;&lt; "Exception: " &lt;&lt; e.what() &lt;&lt; endl;<br>
+    }<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q20" id="q20a" value="1">
+        <label for="q20a">La clause catch attend une logic_error, mais une invalid_argument est lancee.</label><br>
+        <input type="radio" name="q20" id="q20b" value="2">
+        <label for="q20b">Le throw doit etre remplace par une condition if/else.</label><br>
+        <input type="radio" name="q20" id="q20c" value="3">
+        <label for="q20c">Il manque une definition pour la fonction division.</label><br>
+        <input type="radio" name="q20" id="q20d" value="4">
+        <label for="q20d">Aucun probleme, le programme affiche une exception correctement.</label>
+    </div>
+</div>
+
+<!-- Question 21 -->
+<div class="question">
+    <strong>Question 21: Quel est le role de l'operateur new en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q21" id="q21a" value="1">
+        <label for="q21a">Allouer de la memoire dynamique et retourner un pointeur vers cette memoire.</label><br>
+        <input type="radio" name="q21" id="q21b" value="2">
+        <label for="q21b">Allouer de la memoire sur la pile pour une variable locale.</label><br>
+        <input type="radio" name="q21" id="q21c" value="3">
+        <label for="q21c">Supprimer une instance de classe.</label><br>
+        <input type="radio" name="q21" id="q21d" value="4">
+        <label for="q21d">Initialiser automatiquement les pointeurs a nullptr.</label>
+    </div>
+</div>
+
+<!-- Question 22 -->
+<div class="question">
+    <strong>Question 22: Quel est le role de la methode clear() dans std::map ?</strong>
+    <div class="answers">
+        <input type="radio" name="q22" id="q22a" value="1">
+        <label for="q22a">Effacer tous les elements de la map.</label><br>
+        <input type="radio" name="q22" id="q22b" value="2">
+        <label for="q22b">Effacer uniquement les cles dupliques.</label><br>
+        <input type="radio" name="q22" id="q22c" value="3">
+        <label for="q22c">Effacer un element specifique de la map.</label><br>
+        <input type="radio" name="q22" id="q22d" value="4">
+        <label for="q22d">Trier les elements par cle.</label>
+    </div>
+</div>
+
+<!-- Question 23 -->
+<div class="question">
+    <strong>Question 23 : Quelle est la sortie de ce programme ?</strong>
+    <code>
+#include &lt;iostream&gt;<br>
+using namespace std;<br><br>
+int main() {<br>
+    int a = 10;<br>
+    int b = 0;<br>
+    try {<br>
+        if (b == 0)<br>
+            throw "Division par zero";<br>
+        cout &lt;&lt; a / b &lt;&lt; endl;<br>
+    } catch (const char* e) {<br>
+        cout &lt;&lt; e &lt;&lt; endl;<br>
+    }<br>
+    return 0;<br>
+}
+    </code>
+    <div class="answers">
+        <input type="radio" name="q23" id="q23a" value="1">
+        <label for="q23a">Erreur de segmentation.</label><br>
+        <input type="radio" name="q23" id="q23b" value="2">
+        <label for="q23b">10</label><br>
+        <input type="radio" name="q23" id="q23c" value="3">
+        <label for="q23c">Division par zero</label><br>
+        <input type="radio" name="q23" id="q23d" value="4">
+        <label for="q23d">Exception non geree.</label>
+    </div>
+</div>
+
+<!-- Question 24 -->
+<div class="question">
+    <strong>Question 24 : Quelle est la syntaxe correcte pour declarer un vecteur de strings en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q24" id="q24a" value="1">
+        <label for="q24a">std::vector<string> myVec;</label><br>
+        <input type="radio" name="q24" id="q24b" value="2">
+        <label for="q24b">std::vector&lt;int&gt; myVec;</label><br>
+        <input type="radio" name="q24" id="q24c" value="3">
+        <label for="q24c">vector&lt;int&gt; myVec;</label><br>
+        <input type="radio" name="q24" id="q24d" value="4">
+        <label for="q24d">vector&lt;string&gt; myVec;</label>
+    </div>
+</div>
+
+<!-- Question 25 -->
+<div class="question">
+    <strong>Question 25 : Quelle est la difference principale entre public et protected en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q25" id="q25a" value="1">
+        <label for="q25a">Les membres public sont accessibles par tous, protected uniquement par les classes derivees.</label><br>
+        <input type="radio" name="q25" id="q25b" value="2">
+        <label for="q25b">Les membres protected sont accessibles par tous, public uniquement dans la meme classe.</label><br>
+        <input type="radio" name="q25" id="q25c" value="3">
+        <label for="q25c">Les deux ont la meme fonctionnalite.</label><br>
+        <input type="radio" name="q25" id="q25d" value="4">
+        <label for="q25d">public et protected sont utilises uniquement dans des classes abstraites.</label>
+    </div>
+</div>
+
+<!-- Question 26 -->
+<div class="question">
+    <strong>Question 26 : Que fait un destructeur en C++ ?</strong>
+    <div class="answers">
+        <input type="radio" name="q26" id="q26a" value="1">
+        <label for="q26a">Libere les ressources allouees dynamiquement.</label><br>
+        <input type="radio" name="q26" id="q26b" value="2">
+        <label for="q26b">Initialise les objets a une valeur par defaut.</label><br>
+        <input type="radio" name="q26" id="q26c" value="3">
+        <label for="q26c">Cree des copies d’un objet existant.</label><br>
+        <input type="radio" name="q26" id="q26d" value="4">
+        <label for="q26d">Efface les fichiers temporaires du programme.</label>
+    </div>
+</div>
+
+
+
+<button type="submit">Soumettre</button>
+
+voici le code complet, ou est ce que je dois ajouter ?

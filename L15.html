@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche de Révision & Quiz - Gestion des Exceptions en C++</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .revision-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-section {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin: 15px 0;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            border-radius: 5px;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Gestion des Exceptions en C++</h1>
+</header>
+
+<div class="container">
+    <section class="revision-section">
+        <h2>Fiche de Révision</h2>
+        <ul>
+            <li>Les exceptions sont gérées avec `try`, `catch` et `throw`.</li>
+            <li>Utilisez des blocs `try` pour détecter les erreurs.</li>
+            <li>Créez des classes personnalisées pour des exceptions spécifiques.</li>
+            <li>RAII permet de gérer automatiquement les ressources grâce aux destructeurs.</li>
+            <li>Les exceptions standard incluent `std::out_of_range`, `std::runtime_error`, etc.</li>
+            <li>Utilisez des pointeurs intelligents (`std::unique_ptr`, `std::shared_ptr`) pour éviter les fuites mémoire.</li>
+            <li>Capturez les exceptions par référence pour éviter les copies inutiles.</li>
+        </ul>
+    </section>
+
+    <section class="quiz-section">
+        <h2>Quiz Interactif</h2>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. Quel mot-clé est utilisé pour lever une exception ?</p>
+                <label><input type="radio" name="q1" value="a"> raise</label>
+                <label><input type="radio" name="q1" value="b"> throw</label>
+                <label><input type="radio" name="q1" value="c"> catch</label>
+            </div>
+
+            <div class="question">
+                <p>2. Quel mot-clé est utilisé pour capturer une exception ?</p>
+                <label><input type="radio" name="q2" value="a"> try</label>
+                <label><input type="radio" name="q2" value="b"> throw</label>
+                <label><input type="radio" name="q2" value="c"> catch</label>
+            </div>
+
+            <div class="question">
+                <p>3. Quelle méthode est appelée si une exception non spécifiée est levée ?</p>
+                <label><input type="radio" name="q3" value="a"> terminate</label>
+                <label><input type="radio" name="q3" value="b"> unexpected</label>
+                <label><input type="radio" name="q3" value="c"> abort</label>
+            </div>
+
+            <!-- Ajoutez plus de questions ici (total 10 questions) -->
+		<div class="question">
+    <p>4. Quelle est la bonne pratique pour capturer une exception ?</p>
+    <label><input type="radio" name="q4" value="a"> Par valeur</label>
+    <label><input type="radio" name="q4" value="b"> Par référence</label>
+    <label><input type="radio" name="q4" value="c"> Par copie</label>
+</div>
+
+<div class="question">
+    <p>5. Quel est l’objectif principal du RAII ?</p>
+    <label><input type="radio" name="q5" value="a"> Optimiser la mémoire</label>
+    <label><input type="radio" name="q5" value="b"> Automatiser la gestion des ressources</label>
+    <label><input type="radio" name="q5" value="c"> Éviter les exceptions</label>
+</div>
+
+<div class="question">
+    <p>6. Quelle méthode est utilisée pour afficher des informations sur une exception ?</p>
+    <label><input type="radio" name="q6" value="a"> `why()`</label>
+    <label><input type="radio" name="q6" value="b"> `message()`</label>
+    <label><input type="radio" name="q6" value="c"> `what()`</label>
+</div>
+
+<div class="question">
+    <p>7. Que fait la fonction `terminate` par défaut en cas d’exception non capturée ?</p>
+    <label><input type="radio" name="q7" value="a"> Elle appelle `exit`</label>
+    <label><input type="radio" name="q7" value="b"> Elle appelle `abort`</label>
+    <label><input type="radio" name="q7" value="c"> Elle relance l’exception</label>
+</div>
+
+<div class="question">
+    <p>8. Quel est le comportement d’un `std::unique_ptr` ?</p>
+    <label><input type="radio" name="q8" value="a"> Il partage la propriété entre plusieurs pointeurs</label>
+    <label><input type="radio" name="q8" value="b"> Il transfère la propriété lors d’une affectation</label>
+    <label><input type="radio" name="q8" value="c"> Il ne libère pas automatiquement la mémoire</label>
+</div>
+
+<div class="question">
+    <p>9. Quelle est l'exception levée par défaut en cas d’échec d’allocation mémoire avec `new` ?</p>
+    <label><input type="radio" name="q9" value="a"> `std::out_of_range`</label>
+    <label><input type="radio" name="q9" value="b"> `std::bad_alloc`</label>
+    <label><input type="radio" name="q9" value="c"> `std::runtime_error`</label>
+</div>
+
+<div class="question">
+    <p>10. Quelle classe standard est utilisée pour les erreurs d’indice hors limites ?</p>
+    <label><input type="radio" name="q10" value="a"> `std::logic_error`</label>
+    <label><input type="radio" name="q10" value="b"> `std::out_of_range`</label>
+    <label><input type="radio" name="q10" value="c"> `std::domain_error`</label>
+</div>
+
+            <a class="button" id="submit-quiz">Soumettre</a>
+        </form>
+        <div id="result"></div>
+    </section>
+</div>
+
+<script>
+    const correctAnswers = {
+        q1: "b",
+        q2: "c",
+        q3: "b",
+	q4: "b",
+q5: "b",
+q6: "c",
+q7: "b",
+q8: "b",
+q9: "b",
+q10: "b",
+
+        // Ajoutez les réponses ici pour les autres questions
+    };
+
+    document.getElementById("submit-quiz").addEventListener("click", function () {
+        const form = document.getElementById("quiz-form");
+        const formData = new FormData(form);
+        let score = 0;
+        let output = "";
+
+        Object.keys(correctAnswers).forEach((key, index) => {
+            const userAnswer = formData.get(key);
+            const correctAnswer = correctAnswers[key];
+            if (userAnswer === correctAnswer) {
+                score++;
+                output += `<p class="correct">Question ${index + 1}: Correct !</p>`;
+            } else {
+                output += `<p class="incorrect">Question ${index + 1}: Incorrect. La bonne réponse était ${correctAnswer.toUpperCase()}.</p>`;
+            }
+        });
+
+        output += `<div class="result"><strong>Votre score : ${score} / ${Object.keys(correctAnswers).length}</strong></div>`;
+        document.getElementById("result").innerHTML = output;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé et Quiz - Flots en C++</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #0073e6;
+        }
+        .summary {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .quiz-section {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .quiz-question {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        button {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Résumé et Quiz - Flots en C++</h1>
+</header>
+
+<main>
+    <section class="summary">
+        <h2>Résumé</h2>
+        <p>
+            Les flots en C++ sont utilisés pour gérer les entrées et sorties de données. Les principales classes incluent :
+        </p>
+        <ul>
+            <li><strong>ostream</strong>: Permet d'écrire des données avec l'opérateur <code>&lt;&lt;</code>.</li>
+            <li><strong>istream</strong>: Permet de lire des données avec l'opérateur <code>&gt;&gt;</code>.</li>
+            <li><strong>fstream</strong>: Permet la lecture/écriture dans des fichiers.</li>
+        </ul>
+        <p>Exemple :</p>
+        <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Entrez un nombre: ";
+    cin >> n;
+    cout << "Vous avez entré: " << n << endl;
+    return 0;
+}
+        </pre>
+        <p>Les flots peuvent également être connectés à des fichiers via les classes <code>ifstream</code> et <code>ofstream</code>.</p>
+    </section>
+
+    <section class="quiz-section">
+        <h2>Quiz</h2>
+        <form id="quiz-form">
+            <div class="quiz-question">
+                <p>1. Quel est le rôle de l’opérateur <code>&lt;&lt;</code> dans la classe <code>ostream</code> ?</p>
+                <label><input type="radio" name="q1" value="A"> Lire des données d’un flot</label>
+                <label><input type="radio" name="q1" value="B"> Écrire des données dans un flot</label>
+                <label><input type="radio" name="q1" value="C"> Gérer les erreurs de flot</label>
+                <label><input type="radio" name="q1" value="D"> Modifier le format de lecture</label>
+            </div>
+
+            <div class="quiz-question">
+                <p>2. Que fait la fonction <code>clear</code> associée aux flots ?</p>
+                <label><input type="radio" name="q2" value="A"> Elle réinitialise les données du flot</label>
+                <label><input type="radio" name="q2" value="B"> Elle réinitialise l'état des bits d'erreur</label>
+                <label><input type="radio" name="q2" value="C"> Elle ferme le flot</label>
+                <label><input type="radio" name="q2" value="D"> Elle active le mode binaire</label>
+            </div>
+
+            <div class="quiz-question">
+                <p>3. Quel est le manipulateur utilisé pour définir la largeur d’un affichage ?</p>
+                <label><input type="radio" name="q3" value="A"> setw</label>
+                <label><input type="radio" name="q3" value="B"> setprecision</label>
+                <label><input type="radio" name="q3" value="C"> setfill</label>
+                <label><input type="radio" name="q3" value="D"> setwfill</label>
+            </div>
+
+            <div class="quiz-question">
+                <p>4. Quelles classes sont dérivées de <code>ios</code> pour manipuler les fichiers en C++ ?</p>
+                <label><input type="radio" name="q4" value="A"> iostream, fstream, et iomanip</label>
+                <label><input type="radio" name="q4" value="B"> ofstream, ifstream, et fstream</label>
+                <label><input type="radio" name="q4" value="C"> ostream, istream, et iostream</label>
+                <label><input type="radio" name="q4" value="D"> fstream, iomanip, et ios</label>
+            </div>
+
+            <button type="button" onclick="submitQuiz()">Soumettre</button>
+        </form>
+        <div class="result" id="quiz-result"></div>
+    </section>
+</main>
+
+<script>
+    const correctAnswers = {
+        q1: "B",
+        q2: "B",
+        q3: "A",
+        q4: "B"
+    };
+
+    function submitQuiz() {
+        let score = 0;
+        const form = document.getElementById('quiz-form');
+        const resultDiv = document.getElementById('quiz-result');
+
+        for (let key in correctAnswers) {
+            const answer = form[key].value;
+            if (answer === correctAnswers[key]) {
+                score++;
+            }
+        }
+
+        resultDiv.textContent = `Votre score est : ${score} / ${Object.keys(correctAnswers).length}`;
+    }
+</script>
+
+</body>
+</html>
